@@ -1,6 +1,6 @@
 {
   "name": "DAR RIDE - Smart Bicycle Mobility Platform",
-  "description": "Africa's Connected Smart Bicycle Sharing & Urban Mobility Platform in Dar es Salaam, featuring 100,000+ IoT connected smart bicycle fleet network, bilingual English and Swahili localization, smart safe-locking, Tanzania mobile money (M-Pesa, Airtel, Tigo, HaloPesa), operations control center, field worker app, customer app, and executive intelligence.",
+  "description": "Africa's Connected Smart Bicycle Sharing & Urban Mobility Platform in Dar es Salaam, featuring 100,000+ IoT smart bicycle fleet network, trilingual localization (English, Swahili, Chinese), light/dark theme switching with high-contrast bold UI, unique 6-digit bicycle payment numbers for offline USSD dialing, public site revenue portal (TZS 200,000,000 / 12 hrs), operations control center, field worker app, and executive intelligence.",
   "requestFramePermissions": ["geolocation"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

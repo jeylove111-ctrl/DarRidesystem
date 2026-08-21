@@ -12,6 +12,7 @@ import {
   Zone,
   RebalanceRecommendation,
   MobileMoneyProvider,
+  ThemeMode,
 } from '../types';
 import {
   DAR_ES_SALAAM_ZONES,
@@ -27,6 +28,8 @@ import {
 interface DarRideContextType {
   language: Language;
   setLanguage: (lang: Language) => void;
+  theme: ThemeMode;
+  setTheme: (theme: ThemeMode) => void;
   activeRole: UserRole;
   setActiveRole: (role: UserRole) => void;
   currentView: string;
@@ -108,6 +111,7 @@ const DarRideContext = createContext<DarRideContextType | undefined>(undefined);
 
 export const DarRideProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('en');
+  const [theme, setTheme] = useState<ThemeMode>('dark');
   const [activeRole, setActiveRole] = useState<UserRole>('Customer');
   const [currentView, setCurrentView] = useState<string>('landing'); // landing, customer, control-center, security, field, ceo, ai-rebalance, iot-sim, architecture
   
@@ -609,6 +613,8 @@ export const DarRideProvider: React.FC<{ children: React.ReactNode }> = ({ child
       value={{
         language,
         setLanguage,
+        theme,
+        setTheme,
         activeRole,
         setActiveRole,
         currentView,

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDarRide } from '../services/store';
-import { UserRole } from '../types';
+import { UserRole, Language } from '../types';
 import { getTranslation } from '../translations';
 import {
   Bike,
@@ -17,12 +17,18 @@ import {
   Users,
   Compass,
   Languages,
+  Sun,
+  Moon,
+  TrendingUp,
+  LayoutDashboard,
 } from 'lucide-react';
 
 export const NavigationHeader: React.FC = () => {
   const {
     language,
     setLanguage,
+    theme,
+    setTheme,
     activeRole,
     setActiveRole,
     currentView,
@@ -34,29 +40,84 @@ export const NavigationHeader: React.FC = () => {
   const unresolvedAlerts = alerts.filter((a) => !a.resolved).length;
 
   const views = [
-    { id: 'landing', labelEn: 'Public Portal', labelSw: 'Ukurasa Mkuu', icon: Globe },
-    { id: 'customer', labelEn: 'Customer Mobile App', labelSw: 'Programu ya Mteja', icon: Smartphone },
-    { id: 'control-center', labelEn: 'Operations Map (100k)', labelSw: 'Ramani ya Baiskeli (100k)', icon: Compass },
-    { id: 'security', labelEn: 'Security & Geofence', labelSw: 'Ulinzi na Wizi', icon: ShieldAlert, badge: unresolvedAlerts },
-    { id: 'field', labelEn: 'Field Technicians', labelSw: 'Mafundi & Karakana', icon: Wrench },
-    { id: 'ceo', labelEn: 'Executive Dashboard', labelSw: 'Ripoti ya Uongozi', icon: BarChart3 },
-    { id: 'ai-rebalance', labelEn: 'AI Demand & Rebalance', labelSw: 'Utabiri wa Mahitaji (AI)', icon: Sparkles },
-    { id: 'iot-sim', labelEn: 'IoT Fleet Telemetry', labelSw: 'Kielelezo cha IoT', icon: Cpu },
-    { id: 'architecture', labelEn: 'Architecture Specs', labelSw: 'Mfumo & Nyaraka', icon: FileCode2 },
+    {
+      id: 'landing',
+      labelEn: 'Public Portal',
+      labelSw: 'Ukurasa Mkuu',
+      labelZh: '官方主页',
+      icon: Globe,
+    },
+    {
+      id: 'customer',
+      labelEn: 'Customer Portal',
+      labelSw: 'Programu ya Mteja',
+      labelZh: '乘客客户端',
+      icon: Smartphone,
+    },
+    {
+      id: 'control-center',
+      labelEn: 'Fleet Control (100k)',
+      labelSw: 'Ramani ya Baiskeli (100k)',
+      labelZh: '10万调度中枢',
+      icon: Compass,
+    },
+    {
+      id: 'security',
+      labelEn: 'Security & Geofence',
+      labelSw: 'Ulinzi na Wizi',
+      labelZh: '安防电子围栏',
+      icon: ShieldAlert,
+      badge: unresolvedAlerts,
+    },
+    {
+      id: 'field',
+      labelEn: 'Field Technicians',
+      labelSw: 'Mafundi & Karakana',
+      labelZh: '现场运维技师',
+      icon: Wrench,
+    },
+    {
+      id: 'ceo',
+      labelEn: 'Executive Dashboard',
+      labelSw: 'Ripoti ya Uongozi',
+      labelZh: '决策与财务大屏',
+      icon: BarChart3,
+    },
+    {
+      id: 'ai-rebalance',
+      labelEn: 'AI Rebalance',
+      labelSw: 'Utabiri wa AI',
+      labelZh: 'AI 车辆再平衡',
+      icon: Sparkles,
+    },
+    {
+      id: 'iot-sim',
+      labelEn: 'IoT Telemetry',
+      labelSw: 'Kielelezo cha IoT',
+      labelZh: '物联网数据流',
+      icon: Cpu,
+    },
+    {
+      id: 'architecture',
+      labelEn: 'Architecture Specs',
+      labelSw: 'Mfumo & Nyaraka',
+      labelZh: '系统架构文档',
+      icon: FileCode2,
+    },
   ];
 
-  const roleTranslations: Record<UserRole, { en: string; sw: string }> = {
-    'Customer': { en: 'Customer / Rider', sw: 'Mteja / Mwendeshaji' },
-    'Operations Manager': { en: 'Operations Manager', sw: 'Meneja wa Uendeshaji' },
-    'Fleet Manager': { en: 'Fleet Manager', sw: 'Meneja wa Baiskeli' },
-    'Security Officer': { en: 'Security Officer', sw: 'Afisa Usalama' },
-    'Field Agent': { en: 'Field Agent', sw: 'Afisa wa Nje' },
-    'Maintenance Manager': { en: 'Maintenance Manager', sw: 'Meneja wa Matengenezo' },
-    'Technician': { en: 'Technician', sw: 'Fundi wa Baiskeli' },
-    'Customer Support': { en: 'Customer Support', sw: 'Huduma kwa Wateja' },
-    'Finance Manager': { en: 'Finance Manager', sw: 'Meneja wa Fedha' },
-    'CEO': { en: 'CEO / Executive', sw: 'Mkurugenzi Mtendaji (CEO)' },
-    'Super Admin': { en: 'Super Admin', sw: 'Msimamizi Mkuu' },
+  const roleTranslations: Record<UserRole, { en: string; sw: string; zh: string }> = {
+    Customer: { en: 'Customer / Rider', sw: 'Mteja / Mwendeshaji', zh: '乘客 / 租车客户' },
+    'Operations Manager': { en: 'Operations Manager', sw: 'Meneja wa Uendeshaji', zh: '运营总监' },
+    'Fleet Manager': { en: 'Fleet Manager', sw: 'Meneja wa Baiskeli', zh: '车队资产经理' },
+    'Security Officer': { en: 'Security Officer', sw: 'Afisa Usalama', zh: '安全防盗专员' },
+    'Field Agent': { en: 'Field Agent', sw: 'Afisa wa Nje', zh: '现场巡检员' },
+    'Maintenance Manager': { en: 'Maintenance Manager', sw: 'Meneja wa Matengenezo', zh: '维修保障经理' },
+    Technician: { en: 'Technician', sw: 'Fundi wa Baiskeli', zh: '驻场技师' },
+    'Customer Support': { en: 'Customer Support', sw: 'Huduma kwa Wateja', zh: '客服专员' },
+    'Finance Manager': { en: 'Finance Manager', sw: 'Meneja wa Fedha', zh: '财务审计经理' },
+    CEO: { en: 'CEO / Executive', sw: 'Mkurugenzi Mtendaji (CEO)', zh: '首席执行官 (CEO)' },
+    'Super Admin': { en: 'Super Admin', sw: 'Msimamizi Mkuu', zh: '超级系统管理员' },
   };
 
   const roles: UserRole[] = [
@@ -73,52 +134,116 @@ export const NavigationHeader: React.FC = () => {
     'Super Admin',
   ];
 
+  const getViewLabel = (v: (typeof views)[0]) => {
+    if (language === 'zh') return v.labelZh;
+    if (language === 'sw') return v.labelSw;
+    return v.labelEn;
+  };
+
+  const getRoleLabel = (r: UserRole) => {
+    if (language === 'zh') return roleTranslations[r].zh;
+    if (language === 'sw') return roleTranslations[r].sw;
+    return roleTranslations[r].en;
+  };
+
+  const isLight = theme === 'light';
+
   return (
-    <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800 shadow-2xl">
+    <header
+      className={`sticky top-0 z-50 transition-colors duration-200 border-b shadow-xl ${
+        isLight
+          ? 'bg-white/95 text-slate-900 border-slate-300 backdrop-blur-md'
+          : 'bg-slate-900/95 text-slate-100 border-slate-800 backdrop-blur-md'
+      }`}
+    >
       {/* Top Banner / System Telemetry Bar */}
-      <div className="bg-slate-950 px-4 py-1.5 border-b border-slate-800/80 text-xs flex flex-wrap items-center justify-between gap-2 text-slate-400">
-        <div className="flex items-center gap-4">
-          <div className="flex items-center gap-1.5 font-mono text-emerald-400">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      <div
+        className={`px-4 py-1.5 border-b text-xs flex flex-wrap items-center justify-between gap-2 transition-colors ${
+          isLight
+            ? 'bg-slate-100 border-slate-300 text-slate-700 font-bold'
+            : 'bg-slate-950 border-slate-800 text-slate-400'
+        }`}
+      >
+        <div className="flex items-center gap-3">
+          <div
+            className={`flex items-center gap-1.5 font-mono font-black ${
+              isLight ? 'text-emerald-700' : 'text-emerald-400'
+            }`}
+          >
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
             </span>
-            <span>
-              {language === 'en'
-                ? 'DAR IOT MESH: 100,000 BIKES ONLINE'
-                : 'MTANDAO WA IOT: BAISKELI 100,000 ZIPO HEWANI'}
+            <span className="tracking-tight">
+              {language === 'zh'
+                ? '达市物联网节点网格: 100,000 辆在线'
+                : language === 'sw'
+                ? 'MTANDAO WA IOT: BAISKELI 100,000 ZIPO HEWANI'
+                : 'DAR IOT MESH: 100,000 BIKES ONLINE'}
             </span>
           </div>
-          <span className="hidden md:inline text-slate-600">|</span>
-          <div className="hidden sm:flex items-center gap-2">
+
+          <span className={isLight ? 'text-slate-400 hidden md:inline' : 'text-slate-700 hidden md:inline'}>|</span>
+
+          <div className="hidden sm:flex items-center gap-2 font-medium">
             <span>
-              {language === 'en' ? 'Dar es Salaam Zones:' : 'Kanda za Dar es Salaam:'}{' '}
-              <strong className="text-slate-200">13 {language === 'en' ? 'Active' : 'Zinazofanya Kazi'}</strong>
+              {language === 'zh'
+                ? '中心枢纽:'
+                : language === 'sw'
+                ? 'Kanda:'
+                : 'Hubs:'}{' '}
+              <strong className={isLight ? 'text-slate-950 font-bold' : 'text-slate-200'}>
+                13 {language === 'zh' ? '个' : ''}
+              </strong>
             </span>
-            <span className="text-slate-600">|</span>
+            <span className={isLight ? 'text-slate-300' : 'text-slate-700'}>|</span>
             <span>
-              {language === 'en' ? 'Available:' : 'Zinazopatikana:'}{' '}
-              <strong className="text-emerald-400">{metrics.availableBikes}</strong>
+              {language === 'zh'
+                ? '可用单车:'
+                : language === 'sw'
+                ? 'Zinazopatikana:'
+                : 'Available:'}{' '}
+              <strong className={isLight ? 'text-emerald-700 font-black font-mono' : 'text-emerald-400 font-bold font-mono'}>
+                {metrics.availableBikes}
+              </strong>
             </span>
-            <span className="text-slate-600">|</span>
+            <span className={isLight ? 'text-slate-300' : 'text-slate-700'}>|</span>
             <span>
-              {language === 'en' ? 'Active Rides:' : 'Zinazotumika:'}{' '}
-              <strong className="text-blue-400">{metrics.rentedBikes}</strong>
+              {language === 'zh'
+                ? '骑行中:'
+                : language === 'sw'
+                ? 'Zinazotumika:'
+                : 'Active Rides:'}{' '}
+              <strong className={isLight ? 'text-blue-700 font-black font-mono' : 'text-blue-400 font-bold font-mono'}>
+                {metrics.rentedBikes}
+              </strong>
             </span>
-            <span className="text-slate-600">|</span>
+            <span className={isLight ? 'text-slate-300' : 'text-slate-700'}>|</span>
             <span>
-              {language === 'en' ? 'Today Revenue:' : 'Mapato ya Leo:'}{' '}
-              <strong className="text-amber-400">TSh {metrics.todayRevenueTsh.toLocaleString()}</strong>
+              {language === 'zh'
+                ? '今日营收:'
+                : language === 'sw'
+                ? 'Mapato ya Leo:'
+                : "Today's Revenue:"}{' '}
+              <strong className={isLight ? 'text-amber-800 font-black font-mono' : 'text-amber-400 font-bold font-mono'}>
+                TSh {metrics.todayRevenueTsh.toLocaleString()}
+              </strong>
             </span>
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* Active Role Selector */}
-          <div className="flex items-center gap-1.5 bg-slate-900 border border-slate-700/70 rounded-lg px-2 py-1">
-            <Users className="w-3.5 h-3.5 text-blue-400" />
-            <span className="text-[11px] text-slate-400 font-medium hidden sm:inline">
-              {language === 'en' ? 'Role:' : 'Jukumu:'}
+        <div className="flex items-center gap-2.5">
+          {/* Active Role / Portal Selector */}
+          <div
+            className={`flex items-center gap-1.5 border rounded-lg px-2 py-1 transition-colors ${
+              isLight
+                ? 'bg-white border-slate-300 shadow-sm'
+                : 'bg-slate-900 border-slate-700/70'
+            }`}
+          >
+            <Users className={`w-3.5 h-3.5 ${isLight ? 'text-blue-600' : 'text-blue-400'}`} />
+            <span className={`text-[11px] font-bold hidden sm:inline ${isLight ? 'text-slate-700' : 'text-slate-400'}`}>
+              {language === 'zh' ? '门户:' : language === 'sw' ? 'Lango:' : 'Portal:'}
             </span>
             <select
               value={activeRole}
@@ -128,26 +253,70 @@ export const NavigationHeader: React.FC = () => {
                 if (newRole === 'Customer') setCurrentView('customer');
                 else if (newRole === 'Technician' || newRole === 'Field Agent') setCurrentView('field');
                 else if (newRole === 'Security Officer') setCurrentView('security');
-                else if (newRole === 'CEO') setCurrentView('ceo');
+                else if (newRole === 'CEO' || newRole === 'Finance Manager') setCurrentView('ceo');
                 else setCurrentView('control-center');
               }}
-              className="bg-transparent text-slate-200 text-xs font-semibold focus:outline-none cursor-pointer"
+              className={`bg-transparent text-xs font-black focus:outline-none cursor-pointer ${
+                isLight ? 'text-slate-900' : 'text-slate-100'
+              }`}
             >
               {roles.map((r) => (
-                <option key={r} value={r} className="bg-slate-900 text-slate-100">
-                  {language === 'en' ? roleTranslations[r].en : roleTranslations[r].sw}
+                <option
+                  key={r}
+                  value={r}
+                  className={isLight ? 'bg-white text-slate-900 font-bold' : 'bg-slate-900 text-slate-100'}
+                >
+                  {getRoleLabel(r)}
                 </option>
               ))}
             </select>
           </div>
 
-          {/* Bilingual Language Switcher with Direct Buttons */}
-          <div className="flex items-center bg-slate-900 p-0.5 rounded-lg border border-slate-700">
+          {/* Theme Mode Switcher */}
+          <div
+            className={`flex items-center p-0.5 rounded-lg border transition-colors ${
+              isLight ? 'bg-white border-slate-300 shadow-sm' : 'bg-slate-900 border-slate-700'
+            }`}
+          >
+            <button
+              onClick={() => setTheme('light')}
+              title={language === 'zh' ? '亮色主题' : language === 'sw' ? 'Mwangaza' : 'Light Mode'}
+              className={`p-1 rounded text-xs font-bold transition-all flex items-center gap-1 ${
+                isLight
+                  ? 'bg-amber-500 text-white shadow-sm font-black'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <Sun className="w-3.5 h-3.5" />
+            </button>
+            <button
+              onClick={() => setTheme('dark')}
+              title={language === 'zh' ? '深色主题' : language === 'sw' ? 'Giza' : 'Dark Mode'}
+              className={`p-1 rounded text-xs font-bold transition-all flex items-center gap-1 ${
+                !isLight
+                  ? 'bg-slate-800 text-emerald-400 shadow-sm font-black'
+                  : 'text-slate-600 hover:text-slate-900'
+              }`}
+            >
+              <Moon className="w-3.5 h-3.5" />
+            </button>
+          </div>
+
+          {/* 3 Languages Switcher: English, Swahili, Chinese */}
+          <div
+            className={`flex items-center p-0.5 rounded-lg border transition-colors ${
+              isLight ? 'bg-white border-slate-300 shadow-sm' : 'bg-slate-900 border-slate-700'
+            }`}
+          >
             <button
               onClick={() => setLanguage('en')}
-              className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all flex items-center gap-1 ${
+              className={`px-1.5 py-0.5 rounded text-[11px] font-black transition-all flex items-center gap-1 ${
                 language === 'en'
-                  ? 'bg-emerald-600 text-white shadow-sm'
+                  ? isLight
+                    ? 'bg-emerald-700 text-white shadow-sm'
+                    : 'bg-emerald-600 text-white shadow-sm'
+                  : isLight
+                  ? 'text-slate-700 hover:text-slate-900'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
@@ -156,14 +325,33 @@ export const NavigationHeader: React.FC = () => {
             </button>
             <button
               onClick={() => setLanguage('sw')}
-              className={`px-2 py-0.5 rounded text-[11px] font-bold transition-all flex items-center gap-1 ${
+              className={`px-1.5 py-0.5 rounded text-[11px] font-black transition-all flex items-center gap-1 ${
                 language === 'sw'
-                  ? 'bg-emerald-600 text-white shadow-sm'
+                  ? isLight
+                    ? 'bg-emerald-700 text-white shadow-sm'
+                    : 'bg-emerald-600 text-white shadow-sm'
+                  : isLight
+                  ? 'text-slate-700 hover:text-slate-900'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <span>🇹🇿</span>
               <span>SW</span>
+            </button>
+            <button
+              onClick={() => setLanguage('zh')}
+              className={`px-1.5 py-0.5 rounded text-[11px] font-black transition-all flex items-center gap-1 ${
+                language === 'zh'
+                  ? isLight
+                    ? 'bg-emerald-700 text-white shadow-sm'
+                    : 'bg-emerald-600 text-white shadow-sm'
+                  : isLight
+                  ? 'text-slate-700 hover:text-slate-900'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <span>🇨🇳</span>
+              <span>中文</span>
             </button>
           </div>
         </div>
@@ -176,7 +364,7 @@ export const NavigationHeader: React.FC = () => {
           onClick={() => setCurrentView('landing')}
           className="flex items-center gap-3 cursor-pointer group select-none"
         >
-          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 via-teal-600 to-blue-600 shadow-lg shadow-emerald-500/20 group-hover:scale-105 transition-transform">
+          <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 via-teal-700 to-blue-700 shadow-md shadow-emerald-500/20 group-hover:scale-105 transition-transform">
             <Bike className="w-6 h-6 text-white" />
             <span className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-blue-500 rounded-full border-2 border-slate-900 flex items-center justify-center">
               <Radio className="w-2 h-2 text-white" />
@@ -184,23 +372,41 @@ export const NavigationHeader: React.FC = () => {
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-extrabold text-xl tracking-tight text-white font-mono">
-                DAR<span className="text-emerald-400">RIDE</span>
+              <span
+                className={`font-black text-xl tracking-tight font-mono ${
+                  isLight ? 'text-slate-950' : 'text-white'
+                }`}
+              >
+                DAR<span className={isLight ? 'text-emerald-700' : 'text-emerald-400'}>RIDE</span>
               </span>
-              <span className="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-1.5 py-0.5 rounded border border-emerald-500/30 font-mono">
+              <span
+                className={`text-[10px] font-black px-1.5 py-0.5 rounded border font-mono ${
+                  isLight
+                    ? 'bg-emerald-100 text-emerald-800 border-emerald-300'
+                    : 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+                }`}
+              >
                 100,000 BIKES
               </span>
             </div>
-            <p className="text-[10px] text-slate-400 font-medium tracking-wide">
-              {language === 'en'
-                ? 'Dar es Salaam 100,000 Smart Mobility Cloud'
-                : 'Mtandao wa Baiskeli 100,000 Dar es Salaam'}
+            <p className={`text-[10px] font-bold tracking-wide ${isLight ? 'text-slate-600' : 'text-slate-400'}`}>
+              {language === 'zh'
+                ? '达累斯萨拉姆 100,000 辆智能互联单车平台'
+                : language === 'sw'
+                ? 'Mtandao wa Baiskeli 100,000 Dar es Salaam'
+                : 'Dar es Salaam 100,000 Smart Mobility Cloud'}
             </p>
           </div>
         </div>
 
         {/* Navigation View Switcher Pills */}
-        <nav className="hidden lg:flex items-center gap-1 bg-slate-950/80 p-1 rounded-xl border border-slate-800/80">
+        <nav
+          className={`hidden lg:flex items-center gap-1 p-1 rounded-xl border transition-colors ${
+            isLight
+              ? 'bg-slate-100 border-slate-300'
+              : 'bg-slate-950/80 border-slate-800/80'
+          }`}
+        >
           {views.map((v) => {
             const Icon = v.icon;
             const isActive = currentView === v.id;
@@ -208,16 +414,24 @@ export const NavigationHeader: React.FC = () => {
               <button
                 key={v.id}
                 onClick={() => setCurrentView(v.id)}
-                className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all ${
+                className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-black transition-all ${
                   isActive
-                    ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                    ? isLight
+                      ? 'bg-emerald-700 text-white shadow-md'
+                      : 'bg-emerald-600 text-white shadow-md shadow-emerald-600/30'
+                    : isLight
+                    ? 'text-slate-700 hover:text-slate-950 hover:bg-slate-200'
                     : 'text-slate-300 hover:text-white hover:bg-slate-800/60'
                 }`}
               >
-                <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-slate-400'}`} />
-                <span>{language === 'en' ? v.labelEn : v.labelSw}</span>
+                <Icon
+                  className={`w-3.5 h-3.5 ${
+                    isActive ? 'text-white' : isLight ? 'text-slate-600' : 'text-slate-400'
+                  }`}
+                />
+                <span>{getViewLabel(v)}</span>
                 {v.badge !== undefined && v.badge > 0 && (
-                  <span className="bg-rose-600 text-white text-[10px] font-bold px-1.5 rounded-full animate-pulse">
+                  <span className="bg-rose-600 text-white text-[10px] font-black px-1.5 rounded-full animate-pulse">
                     {v.badge}
                   </span>
                 )}
@@ -231,11 +445,19 @@ export const NavigationHeader: React.FC = () => {
           <select
             value={currentView}
             onChange={(e) => setCurrentView(e.target.value)}
-            className="bg-slate-800 text-slate-100 border border-slate-700 text-xs rounded-lg px-2.5 py-2 font-medium focus:outline-none"
+            className={`border text-xs rounded-lg px-2.5 py-2 font-black focus:outline-none ${
+              isLight
+                ? 'bg-white text-slate-900 border-slate-300 shadow-sm'
+                : 'bg-slate-800 text-slate-100 border-slate-700'
+            }`}
           >
             {views.map((v) => (
-              <option key={v.id} value={v.id}>
-                {language === 'en' ? v.labelEn : v.labelSw} {v.badge ? `(${v.badge})` : ''}
+              <option
+                key={v.id}
+                value={v.id}
+                className={isLight ? 'bg-white text-slate-900 font-bold' : 'bg-slate-900 text-slate-100'}
+              >
+                {getViewLabel(v)} {v.badge ? `(${v.badge})` : ''}
               </option>
             ))}
           </select>
@@ -244,4 +466,3 @@ export const NavigationHeader: React.FC = () => {
     </header>
   );
 };
-

@@ -1,3 +1,5 @@
+export type Language = 'en' | 'sw' | 'zh';
+
 export type TranslationKey = keyof typeof translations.en;
 
 export const translations = {
@@ -10,10 +12,13 @@ export const translations = {
     availableLabel: 'Available',
     activeRidesLabel: 'Active Rides',
     todayRevenueLabel: "Today's Revenue",
-    roleLabel: 'Role',
-    switchLanguage: 'Badili kwenda Kiswahili',
+    roleLabel: 'Portal / Role',
+    languageLabel: 'Language',
+    themeLabel: 'Theme',
+    lightModeLabel: 'Light Mode',
+    darkModeLabel: 'Dark Mode',
 
-    // Navigation Tabs
+    // Navigation Tabs / Portals
     navPublicPortal: 'Public Portal',
     navCustomerApp: 'Customer Mobile App',
     navControlCenter: 'Operations Map (100k Mesh)',
@@ -50,8 +55,8 @@ export const translations = {
     howItWorksTitle: 'How DAR RIDE Works in 4 Easy Steps',
     step1Title: 'Find a Bicycle',
     step1Desc: 'Open the live map to locate nearby smart bikes stationed in Mwenge, Posta, Kariakoo, Masaki, UDSM & more.',
-    step2Title: 'Scan QR Code',
-    step2Desc: 'Point your camera at the optical QR code on the handlebar stem or Manganese frame.',
+    step2Title: 'Scan QR Code or Dial USSD',
+    step2Desc: 'Point your camera at the QR code, or dial USSD (*150*00#) with the 6-digit Lipa Namba on any phone.',
     step3Title: 'Pay with Mobile Money',
     step3Desc: 'Choose your pass (3h, 6h, 12h, 24h) and confirm payment with your secret PIN on your handset.',
     step4Title: 'Safe Auto-Lock',
@@ -76,17 +81,19 @@ export const translations = {
     solutionTouristTitle: 'For Tourists & Coastal Exploring',
     solutionTouristDesc: 'Scenic exploration across Coco Beach, Masaki Peninsula, Oyster Bay, and Kivukoni fish markets with 24-hour tourist passes.',
 
-    // Customer App
+    // Customer App Tabs
     tabMap: 'Map & Nearby',
     tabScan: 'Scan QR Code',
+    tabOfflineUssd: 'Offline USSD / Lipa Namba',
     tabActiveRide: 'Active Ride',
+    tabRevenueTransparency: 'City Revenue & Impact',
     tabHistory: 'Ride History',
     tabSupport: 'Support & Report',
     
     nearbyBikesTitle: 'Nearby Available Bicycles',
     nearbyBikesSubtitle: 'Connected IoT bicycles within walking distance in Dar es Salaam',
     unlockBikeBtn: 'Unlock This Bicycle',
-    enterBikeIdPlaceholder: 'Or enter 6-digit Bike ID (e.g. DAR-000928)',
+    enterBikeIdPlaceholder: 'Or enter 6-digit Bike ID or Lipa Namba (e.g. 550928)',
     scanQrBtn: 'Scan Bicycle QR Code',
     scanningCameraText: 'Align camera with the QR code on the bike handlebar...',
 
@@ -119,11 +126,21 @@ export const translations = {
     receiptCalories: 'Estimated Calories Burned',
     receiptClose: 'Close Receipt',
 
+    // Public Revenue Transparency Card in Customer Portal
+    publicRevTitle: 'Dar es Salaam Public Mobility Revenue & Economic Impact Ledger',
+    publicRevSubtitle: 'Transparent live statistics, 12-hour municipal cashflow, and community sustainability metrics.',
+    publicRevTarget: '12-Hour Operating Cycle Benchmark',
+    publicRevValue: 'TZS 200,000,000 / 12 Hours',
+    publicRevFormula: 'Formula: 100,000 Bikes × 2 Trips/12h × TSh 1,000 Tariff',
+    publicCo2Total: '14,200 kg CO₂ Saved Today',
+    publicTripsTotal: '184,290 Total Trips Completed',
+    publicJobsCreated: '1,450 Local Technicians & Marshals Employed',
+
     // Control Center (100k Mesh)
     controlHeader: 'DAR RIDE Operations Control Center (100,000 Smart Fleet)',
     controlSubtitle: 'Real-time telemetry, geofence compliance, and live dispatch across Dar es Salaam metropolis.',
     liveMeshBadge: '100,000 IOT NODES ACTIVE',
-    searchBikePlaceholder: 'Search by Bike ID, Zone, or Renter...',
+    searchBikePlaceholder: 'Search by Bike ID, Lipa Namba, Zone, or Renter...',
     allZones: 'All 13 Zones',
     statusAll: 'All Statuses',
     statusAvailable: 'Available',
@@ -216,10 +233,13 @@ export const translations = {
     availableLabel: 'Zinazopatikana',
     activeRidesLabel: 'Safari Zinazoendelea',
     todayRevenueLabel: 'Mapato ya Leo',
-    roleLabel: 'Wadhifa / Jukumu',
-    switchLanguage: 'Switch to English',
+    roleLabel: 'Lango / Wadhifa',
+    languageLabel: 'Lugha',
+    themeLabel: 'Mwonekano',
+    lightModeLabel: 'Mwangaza',
+    darkModeLabel: 'Giza',
 
-    // Navigation Tabs
+    // Navigation Tabs / Portals
     navPublicPortal: 'Ukurasa Mkuu',
     navCustomerApp: 'Programu ya Mteja',
     navControlCenter: 'Ramani ya Uendeshaji (Baiskeli 100k)',
@@ -256,8 +276,8 @@ export const translations = {
     howItWorksTitle: 'Jinsi DAR RIDE Inavyofanya Kazi kwa Hatua 4',
     step1Title: 'Tafuta Baiskeli',
     step1Desc: 'Fungua ramani ya moja kwa moja kupata baiskeli zilizo karibu nawe Mwenge, Posta, Kariakoo, Masaki, Chuo Kikuu (UDSM) na kwingineko.',
-    step2Title: 'Piga Picha ya QR Code',
-    step2Desc: 'Elekeza kamera ya simu yako kwenye QR Code iliyopo kwenye usukani au fremu ya chuma ya baiskeli.',
+    step2Title: 'Piga Picha ya QR au Piga USSD',
+    step2Desc: 'Elekeza kamera kwenye QR Code au piga USSD (*150*00#) ukitumia Lipa Namba ya tarakimu 6 kwenye simu yoyote.',
     step3Title: 'Lipa kwa Pesa ya Simu',
     step3Desc: 'Chagua muda unaotaka (masaa 3, 6, 12, au 24) kisha weka namba yako ya siri kwenye simu yako kuthibitisha.',
     step4Title: 'Kufuli Kujifunga Salama',
@@ -282,17 +302,19 @@ export const translations = {
     solutionTouristTitle: 'Kwa Watalii & Matembezi ya Pwani',
     solutionTouristDesc: 'Tembelea mandhari nzuri za Pwani ya Coco, Rasi ya Msasani, Oyster Bay, na soko la samaki Kivukoni kwa vifurushi vya masaa 24.',
 
-    // Customer App
+    // Customer App Tabs
     tabMap: 'Ramani & Karibu Nami',
     tabScan: 'Changanua QR Code',
+    tabOfflineUssd: 'Lipa USSD / Tochi',
     tabActiveRide: 'Safari Yangu',
+    tabRevenueTransparency: 'Mapato ya Jiji & Athari',
     tabHistory: 'Historia ya Safari',
     tabSupport: 'Msaada & Ripoti Hitilafu',
 
     nearbyBikesTitle: 'Baiskeli Zinazopatikana Karibu Nawe',
     nearbyBikesSubtitle: 'Baiskeli za kidijitali unazoweza kuzifikia kwa kutembea jijini Dar es Salaam',
     unlockBikeBtn: 'Fungua Baiskeli Hii',
-    enterBikeIdPlaceholder: 'Au weka tarakimu 6 za Baiskeli (mf. DAR-000928)',
+    enterBikeIdPlaceholder: 'Au weka tarakimu 6 za Baiskeli au Lipa Namba (mf. 550928)',
     scanQrBtn: 'Changanua QR Code ya Baiskeli',
     scanningCameraText: 'Elekeza kamera kwenye QR Code ya baiskeli kwenye usukani...',
 
@@ -325,11 +347,21 @@ export const translations = {
     receiptCalories: 'Kalori Zilizochomwa',
     receiptClose: 'Funga Stakabadhi',
 
+    // Public Revenue Transparency Card in Customer Portal
+    publicRevTitle: 'Daftari la Uwazi la Mapato na Athari za Kiuchumi Dar es Salaam',
+    publicRevSubtitle: 'Takwimu za moja kwa moja, mzunguko wa fedha wa masaa 12, na maendeleo endelevu ya jamii.',
+    publicRevTarget: 'Kipimo cha Mzunguko wa Masaa 12 ya Uendeshaji',
+    publicRevValue: 'TZS 200,000,000 / Masaa 12',
+    publicRevFormula: 'Kanuni: Baiskeli 100,000 × Safari 2/12h × TSh 1,000',
+    publicCo2Total: 'Kilo 14,200 za Hewa ya Ukaa (CO₂) Zimeokolewa Leo',
+    publicTripsTotal: 'Safari 184,290 Zimekamilika kwa Ujumla',
+    publicJobsCreated: 'Mafundi na Walinzi 1,450 wa Kitanzania Wameajiriwa',
+
     // Control Center (100k Mesh)
     controlHeader: 'Kituo cha Ramani na Uendeshaji cha DAR RIDE (Baiskeli 100,000)',
     controlSubtitle: 'Ufuatiliaji wa satelaiti, mipaka ya jiji, na usambazaji wa baiskeli kote jijini Dar es Salaam.',
     liveMeshBadge: 'BAISKELI 100,000 ZIPO MTANDAONI',
-    searchBikePlaceholder: 'Tafuta kwa Nambari ya Baiskeli, Kanda, au Jina...',
+    searchBikePlaceholder: 'Tafuta kwa Nambari ya Baiskeli, Lipa Namba, Kanda, au Jina...',
     allZones: 'Kanda Zote 13 za Dar',
     statusAll: 'Hali Zote',
     statusAvailable: 'Inapatikana',
@@ -412,8 +444,229 @@ export const translations = {
     footerNodes: 'Baiskeli 100,000 Zilizounganishwa Mtandaoni',
     footerLocations: 'Mwenge • Masaki • Posta • Kariakoo • Pwani ya Coco • Msasani • Oyster Bay • Ubungo • UDSM',
   },
+
+  zh: {
+    // Brand & Header
+    brandName: 'DAR RIDE 达累斯萨拉姆骑行',
+    brandTagline: '100,000 辆智能互联太阳能共享单车云平台',
+    iotMeshStatus: '达市物联网节点网格: 100,000 辆单车在线',
+    activeZonesLabel: '13 个活跃中心枢纽',
+    availableLabel: '可用单车',
+    activeRidesLabel: '进行中骑行',
+    todayRevenueLabel: '今日总营收',
+    roleLabel: '系统门户 / 角色',
+    languageLabel: '语言切换',
+    themeLabel: '界面主题',
+    lightModeLabel: '亮色高对比',
+    darkModeLabel: '深色暗夜',
+
+    // Navigation Tabs / Portals
+    navPublicPortal: '官方主页门户',
+    navCustomerApp: '乘客客户端应用',
+    navControlCenter: '十万辆运营调度中枢',
+    navSecurity: '安防与防盗电子围栏',
+    navField: '现场运维与维修端',
+    navCeo: '执行决策与财务大屏',
+    navAiRebalance: 'AI 需求预测与车辆调度',
+    navIotSim: '物联网数据流仿真',
+    navArchitecture: '系统蓝图与技术规范',
+
+    // Roles
+    roleCustomer: '乘客 / 租车客户',
+    roleOpsManager: '运营总监',
+    roleFleetManager: '车队资产经理',
+    roleSecurityOfficer: '安全防盗专员',
+    roleFieldAgent: '现场巡检员',
+    roleMaintenanceManager: '维修保障经理',
+    roleTechnician: '驻场技师',
+    roleCustomerSupport: '客服专员',
+    roleFinanceManager: '财务审计经理',
+    roleCeo: '首席执行官 (CEO)',
+    roleSuperAdmin: '超级系统管理员',
+
+    // Landing Page
+    heroBadge: '非洲最大规模互联智慧出行网络 • 100,000 辆智能太阳能单车',
+    heroTitleLine1: '智慧出行，',
+    heroTitleLine2: '畅骑达累斯萨拉姆。',
+    heroSubtitle: '覆盖坦桑尼亚达累斯萨拉姆全城 100,000 辆智能物联网单车。支持 M-Pesa、Airtel Money、Tigo Pesa、HaloPesa 移动支付与离线短码，仅需 500 先令起即可畅享绿色健康出行。',
+    heroCtaCustomer: '启动乘客移动端',
+    heroCtaControl: '进入 10 万辆调度监控中心',
+    heroPaymentTitle: '深度集成坦桑尼亚四大移动运营商支付网关',
+
+    howItWorksBadge: '极简无缝骑行流程',
+    howItWorksTitle: '四步轻松开启 DAR RIDE 骑行',
+    step1Title: '定位附近单车',
+    step1Desc: '打开实时地图，查看分布在 Mwenge、Posta、Kariakoo、Masaki、达累斯萨拉姆大学等枢纽的可用车辆。',
+    step2Title: '扫码或拨打 USSD 离线码',
+    step2Desc: '用手机相机扫描车把二维码，或在任何非智能手机上输入 6 位车辆支付码拨打 (*150*00#)。',
+    step3Title: '手机钱包快速支付',
+    step3Desc: '选择骑行套餐 (3小时、6小时、12小时或全天)，在手机弹出的运营商安全提示中输入 PIN 码即可。',
+    step4Title: '安全驻车自动落锁',
+    step4Desc: '畅享骑行。到达目的地后停入指定停放区域，车辆完全静止后太阳能电磁锁自动安全上锁。',
+
+    pricingBadge: '公开透明・普惠定价',
+    pricingTitle: '租赁计费套餐与会员订阅',
+    pricingSubtitle: '达累斯萨拉姆市政统一出行标准资费',
+    choosePlanBtn: '选择套餐并开锁',
+    popularBadge: '最受欢迎',
+
+    zonesBadge: '全城活跃地理围栏',
+    zonesTitle: '已部署于达累斯萨拉姆 13 个战略核心枢纽',
+    exploreMapBtn: '浏览 100,000 辆全城实时地图',
+    demandLabel: '实时热度',
+    bikesStationed: '投放单车量',
+
+    solutionStudentTitle: '面向高校师生群体',
+    solutionStudentDesc: '专为达累斯萨拉姆大学 (UDSM)、IFM、CBE 与 Ardhi 大学定制的平价学期卡，告别早高峰拥堵。',
+    solutionCorpTitle: '面向企业与政企通勤',
+    solutionCorpDesc: '提供企业员工集中账户、专属绿色停靠点与同城快递员高效穿梭解决方案。',
+    solutionTouristTitle: '面向游客与海滨观光',
+    solutionTouristDesc: '畅游 Coco Beach、Masaki 半岛、Oyster Bay 与鱼市风光，配备 24 小时全天观光畅骑卡。',
+
+    // Customer App Tabs
+    tabMap: '地图与附近车辆',
+    tabScan: '扫码开锁',
+    tabOfflineUssd: '离线 USSD / 支付码 (功能机专用)',
+    tabActiveRide: '正在骑行中',
+    tabRevenueTransparency: '全城收益与社会效益',
+    tabHistory: '骑行历史记录',
+    tabSupport: '客服与报修',
+
+    nearbyBikesTitle: '周边可用单车',
+    nearbyBikesSubtitle: '步行范围内已联网并充满电的智能单车',
+    unlockBikeBtn: '立即解锁此车',
+    enterBikeIdPlaceholder: '或输入 6 位单车编号/支付码 (例如 550928)',
+    scanQrBtn: '扫描单车二维码',
+    scanningCameraText: '请将相机对准车把上的二维码...',
+
+    selectPackageHeader: '第 2 步：选择租赁时长',
+    selectPackageSub: '一口价透明计费，超时自动安全落锁',
+    selectPaymentHeader: '第 3 步：坦桑尼亚移动钱包收银台',
+    selectPaymentSub: '系统将通过运营商 STK Push 直推扣款通知到您的手机',
+    enterPhoneLabel: '移动钱包手机号码 (M-Pesa / Tigo / Airtel / Halo)',
+    enterNameLabel: '乘客姓名',
+    proceedPayBtn: '立即通过手机钱包付款',
+    backBtn: '返回上一步',
+
+    activeRideHeader: '当前骑行会话',
+    rideDurationRemaining: '剩余可用时长',
+    rideSpeed: '当前车速',
+    rideBattery: '太阳能 IoT 电量',
+    rideDistance: '累计骑行里程',
+    rideSafetyNotice: '安全落锁机制：当单车处于行驶运动状态时绝不会误锁。请安全停稳并保持静止 2 分钟后自动锁闭。',
+    endRideBtn: '结束骑行并安全锁车',
+    viewReceiptBtn: '查看数字收据凭证',
+    reportIssueBtn: '报修车辆故障',
+
+    receiptTitle: '官方数字骑行账单凭证',
+    receiptTxnId: '交易流水号',
+    receiptBicycle: '车辆编号',
+    receiptProvider: '支付渠道',
+    receiptDuration: '骑行时长',
+    receiptAmount: '实付金额',
+    receiptCo2Saved: '减少碳排放量 (CO₂)',
+    receiptCalories: '预估消耗卡路里',
+    receiptClose: '关闭收据',
+
+    // Public Revenue Transparency Card in Customer Portal
+    publicRevTitle: '达累斯萨拉姆绿色出行营收公开与经济效益看板',
+    publicRevSubtitle: '实时公开数据、12 小时市政运营现金流与社区可持续发展指标。',
+    publicRevTarget: '12 小时运营周期基准营收',
+    publicRevValue: '2 亿坦桑尼亚先令 (TZS 200,000,000) / 12小时',
+    publicRevFormula: '计算公式: 100,000 辆车 × 2 次骑行/12小时 × 1,000 先令基准资费',
+    publicCo2Total: '今日已累计减碳 14,200 公斤 CO₂',
+    publicTripsTotal: '全城累计已完成 184,290 次骑行',
+    publicJobsCreated: '已为当地创造 1,450 个运维技师与巡检岗位',
+
+    // Control Center (100k Mesh)
+    controlHeader: 'DAR RIDE 全球运营监控调度中心 (100,000 辆智能车队)',
+    controlSubtitle: '覆盖达累斯萨拉姆大都会的实时遥测、地理围栏合规与现场巡检调度。',
+    liveMeshBadge: '100,000 个物联网节点在线',
+    searchBikePlaceholder: '按单车编号、支付码、区域或租车人搜索...',
+    allZones: '全部 13 个区域',
+    statusAll: '所有状态',
+    statusAvailable: '空闲可用',
+    statusRented: '骑行中',
+    statusMaintenance: '维修保养',
+    statusSuspicious: '异常告警',
+    statusOffline: '设备离线',
+    statusExpiring: '即将到期',
+    statusRecovery: '调拨回收',
+
+    remoteUnlockBtn: '远程电磁锁开锁',
+    emergencyLockBtn: '触发远程安全锁车',
+    diagnosticsTitle: '硬件与物联网传感器诊断',
+    frameSerial: '车架防伪钢印',
+    iotSerial: 'IoT 模块序列号',
+    solarWatts: '太阳能板实时功率',
+    currentLocation: '高精 GPS 坐标',
+    renterDetails: '当前骑行乘客',
+
+    // Security Command
+    securityHeader: '安防监控与防盗电子围栏指挥中心',
+    securitySubtitle: '多维防盗追踪、三轴加速度计防撬告警与非法位移处置体系。',
+    geofenceAlertsTitle: '越界围栏告警 (达累斯萨拉姆市行政边界)',
+    tamperAlertsTitle: '防撬与异常震动传感器触发',
+    inactivityTitle: '长期闲置与疑似遗弃车辆处置',
+    dispatchRecoveryBtn: '派遣安防回收巡逻车',
+    resolveAlertBtn: '标记告警已解除',
+
+    // Field Worker App
+    fieldHeader: '现场运维与巡检移动工作台',
+    fieldSubtitle: '达累斯萨拉姆区域单车维修与调拨回收车队',
+    repairsTab: '故障报修与工单',
+    recoveryTab: '车辆回收调度',
+    gpsStepTitle: '1. GPS 步行导航追踪车辆',
+    qrStepTitle: '2. 到达现场光学扫码核验',
+    progressionTitle: '3. 更新工单状态进度',
+    statusInProgress: '处理中',
+    statusRepaired: '已修复',
+    statusVerified: '已质检验收',
+    statusClosed: '完成并归档工单',
+
+    // CEO Dashboard
+    ceoHeader: '执行总裁决策大屏与单车单体经济学',
+    ceoSubtitle: '车队利用率、营收结构与非洲 10 万辆共享单车扩张蓝图。',
+    totalRevenueCard: '全网累计运营收入',
+    utilizationCard: '单车平均利用率',
+    paybackCard: '单车投资回收期',
+    marginCard: '月度综合毛利率',
+    topZonesTitle: '达累斯萨拉姆创收前列枢纽',
+    scalingRoadmapTitle: '100,000+ 智能单车分阶段扩张蓝图',
+
+    // AI Rebalance
+    aiHeader: 'AI 需求预测与自主车辆再平衡调度',
+    aiSubtitle: '基于神经网络的通勤潮汐交通预测，紧贴达市市场与高校作息。',
+    demandHotspotsTitle: '当前超高需求热点区域',
+    dispatchRebalanceBtn: '调度调运车队',
+    bikesToMoveLabel: '计划转移数量',
+
+    // IoT Simulator
+    iotHeader: '100,000 节点物联网数据包与网络仿真器',
+    iotSubtitle: '量产 100,000 辆单车前的 4G LTE-M / MQTT 遥测压力测试环境。',
+    startSimBtn: '开始仿真推送',
+    pauseSimBtn: '暂停数据流',
+    triggerBreachBtn: '模拟地理围栏越界',
+    triggerTamperBtn: '模拟剧烈震动/防盗触发',
+    triggerPunctureBtn: '模拟爆胎故障报修',
+    publishMqttBtn: '发布 MQTT 控制指令',
+
+    // Architecture Docs
+    archHeader: 'DAR RIDE 生产级系统架构与技术白皮书',
+    archSubtitle: '企业级 PostgreSQL 数据表设计、移动支付网关 API 与 10 万辆经济模型。',
+    schemaTab: 'PostgreSQL 数据库模型 (30+ 张表)',
+    apiTab: 'REST 与 WebSocket 实时接口',
+    iotTab: '智能锁与硬件电路规范',
+    paymentsTab: '坦桑尼亚移动支付架构',
+    scalingTab: '10 万辆规模扩张计划',
+
+    // Footer
+    footerCopyright: 'DAR RIDE TANZANIA • 非洲最大规模互联智慧出行基础设施',
+    footerNodes: '100,000 个物联网在线节点',
+    footerLocations: 'Mwenge • Masaki • Posta • Kariakoo • Coco Beach • Msasani • Oyster Bay • Ubungo • UDSM',
+  },
 };
 
-export const getTranslation = (lang: 'en' | 'sw', key: TranslationKey): string => {
+export const getTranslation = (lang: Language, key: TranslationKey): string => {
   return translations[lang]?.[key] || translations['en']?.[key] || (key as string);
 };

@@ -1,4 +1,5 @@
-export type Language = 'en' | 'sw';
+export type Language = 'en' | 'sw' | 'zh';
+export type ThemeMode = 'dark' | 'light';
 
 export type BicycleState =
   | 'AVAILABLE'
